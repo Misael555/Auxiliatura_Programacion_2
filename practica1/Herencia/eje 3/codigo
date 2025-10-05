@@ -1,52 +1,71 @@
-class Politico:
-    def __init__(self, profesion, añosExp):
-        self.profesion = profesion
-        self.añosExp = añosExp
+// Clase base
+class Animal {
+    protected String nombre;
+    protected int edad;
 
-    def mostrar_profesion(self):
-        return f"Profesión: {self.profesion}, años de experiencia: {self.añosExp}"
+    public Animal(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    public void desplazarse() {
+        System.out.println("El animal se desplaza.");
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + ", Edad: " + edad;
+    }
+}
+
+class Leon extends Animal {
+    public Leon(String nombre, int edad) {
+        super(nombre, edad);
+    }
+
+    @Override
+    public void desplazarse() {
+        System.out.println(nombre + " camina majestuosamente.");
+    }
+}
+
+class Pinguino extends Animal {
+    public Pinguino(String nombre, int edad) {
+        super(nombre, edad);
+    }
+
+    @Override
+    public void desplazarse() {
+        System.out.println(nombre + " nada en el agua.");
+    }
+}
+
+class Canguro extends Animal {
+    public Canguro(String nombre, int edad) {
+        super(nombre, edad);
+    }
+
+    @Override
+    public void desplazarse() {
+        System.out.println(nombre + " salta por el terreno.");
+    }
+}
 
 
-class Partido:
-    def __init__(self, nombreP, rol):
-        self.nombreP = nombreP
-        self.rol = rol
+public class Main {
+    public static void main(String[] args) {
+      
+        Animal[] animales = new Animal[3];
 
-    def mostrar_partido(self):
-        return f"Partido: {self.nombreP}, Rol: {self.rol}"
+        animales[0] = new Leon("Simba", 5);
+        animales[1] = new Pinguino("Pingu", 3);
+        animales[2] = new Canguro("Kangy", 4);
 
+        for (Animal animal : animales) {
+            System.out.println(animal);
+            animal.desplazarse();
+            System.out.println();
+        }
+    }
+}
 
-class Presidente(Politico, Partido):
-    def __init__(self, nombre, apellido, profesion, añosExp, partido):
-        Politico.__init__(self, profesion, añosExp)  
-        Partido.__init__(self, partido.nombreP, partido.rol)  
-        self.nombre = nombre
-        self.apellido = apellido
-        self.partido = partido  
-
-    def mostrar_presidente(self):
-        return (f"Presidente: {self.nombre} {self.apellido}\n" +
-                self.mostrar_profesion() + "\n" +
-                self.mostrar_partido())
-
-
-
-
-partido1 = Partido("Partido Liberal", "Gobierno")
-partido2 = Partido("Partido Socialista", "Oposición")
-partido3 = Partido("Partido Verde", "Independiente")
-
-
-presidente1 = Presidente("Juan", "Pérez", "Abogado", 15, partido1)
-presidente2 = Presidente("Ana", "López", "Economista", 20, partido2)
-presidente3 = Presidente("Carlos", "González", "Ingeniero", 10, partido3)
-
-
-presidentes = [presidente1, presidente2, presidente3]
-
-
-nombre_buscado = "Carlos"
-for presidente in presidentes:
-    if presidente.nombre == nombre_buscado:
-        print(presidente.mostrar_presidente())
-        break
