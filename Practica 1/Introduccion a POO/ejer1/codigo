@@ -1,1 +1,80 @@
+// Clase base Persona
+class Persona {
+    protected String nombre;
+    protected String apellido;
+    protected int ci;
+
+    public Persona(String nombre, String apellido, int ci) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.ci = ci;
+    }
+
+    public void metodo() {
+        System.out.println("Método de Persona");
+    }
+
+    @Override
+    public String toString() {
+        return "Nom: " + nombre + " " + apellido + ", CI: " + ci;
+    }
+}
+
+// Clase hija Cliente
+class Cliente extends Persona {
+    private String nroCompra;
+    private String idCliente;
+
+    public Cliente(String nombre, String apellido, int ci, String nroCompra, String idCliente) {
+        super(nombre, apellido, ci);
+        this.nroCompra = nroCompra;
+        this.idCliente = idCliente;
+    }
+
+    @Override
+    public void metodo() {
+        System.out.println("Método de Cliente");
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Nro Compra: " + nroCompra + ", ID Cliente: " + idCliente;
+    }
+}
+
+// Clase hija Jefe
+class Jefe extends Persona {
+    private String sucursal;
+    private String tipo;
+
+    public Jefe(String nombre, String apellido, int ci, String sucursal, String tipo) {
+        super(nombre, apellido, ci);
+        this.sucursal = sucursal;
+        this.tipo = tipo;
+    }
+
+    @Override
+    public void metodo() {
+        System.out.println("Método de Jefe");
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Sucursal: " + sucursal + ", Tipo: " + tipo;
+    }
+}
+
+// Clase principal
+public class Main {
+    public static void main(String[] args) {
+        Cliente cliente1 = new Cliente("Misael", "Mancilla", 11096108, "001", "C123");
+        Jefe jefe1 = new Jefe("Jose", "See", 7654321, "A", "Gerente");
+
+        System.out.println(cliente1);
+        System.out.println(jefe1);
+
+        cliente1.metodo();
+        jefe1.metodo();
+    }
+}
 
